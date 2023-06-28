@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import DataUsers from "./components/DataUsers";
+import DataPosts from "./components/DataPosts";
+import DataPhotos from "./components/DataPhotos";
+import ErrorBoundary from "./components/ErrorBoundary";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary>
+      <Router>
+        <Routes>
+          <Route path="/" exact element={<HomePage />}></Route>
+          <Route path="/users" element={<DataUsers />}></Route>
+          <Route path="/posts" element={<DataPosts />}></Route>
+          <Route path="/photos" element={<DataPhotos />}></Route>
+        </Routes>
+      </Router>
+    </ErrorBoundary>
   );
 }
 
